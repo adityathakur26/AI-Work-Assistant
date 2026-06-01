@@ -32,7 +32,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState("dashboard");
 
   const API_URL =
-  "https://your-backend.onrender.com";
+  "https://ai-work-assistant-c063.onrender.com";
 
   const generateAIReport = async () => {
 
