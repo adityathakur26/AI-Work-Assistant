@@ -38,7 +38,7 @@ function App() {
     try {
 
       const response = await fetch(
-        "http://127.0.0.1:8000/ai-coach"
+        "https://ai-work-assistant.onrender.com/ai-coach"
       );
 
       const data = await response.json();
@@ -64,7 +64,7 @@ function App() {
     try {
 
       const response = await fetch(
-        "http://127.0.0.1:8000/ask-ai",
+        "https://ai-work-assistant.onrender.com/ask-ai",
         {
           method: "POST",
           headers: {
@@ -110,19 +110,19 @@ function App() {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch("http://127.0.0.1:8000/activities")
+      fetch("https://ai-work-assistant.onrender.com/activities")
         .then((res) => res.json())
         .then((data) => setActivities(data));
 
-      fetch("http://127.0.0.1:8000/suggestions")
+      fetch("https://ai-work-assistant.onrender.com/suggestions")
         .then((res) => res.json())
         .then((data) => setSuggestions(data));
 
-      fetch("http://127.0.0.1:8000/productivity-score")
+      fetch("https://ai-work-assistant.onrender.com/productivity-score")
         .then((res) => res.json())
         .then((data) => setScore(data));
 
-      fetch("http://127.0.0.1:8000/ai-insights")
+      fetch("https://ai-work-assistant.onrender.com/ai-insights")
       .then(res => res.json())
       .then(data => {
 
@@ -138,27 +138,27 @@ function App() {
 
       });
 
-      fetch("http://127.0.0.1:8000/daily-summary")
+      fetch("https://ai-work-assistant.onrender.com/daily-summary")
         .then(res => res.json())
         .then(data => setDailySummary(data.summary));
 
-      fetch("http://127.0.0.1:8000/categorized-activities")
+      fetch("https://ai-work-assistant.onrender.com/categorized-activities")
       .then(res=>res.json())
       .then(data=>setCategorized(data))    
 
-     /* fetch("http://127.0.0.1:8000/ai-coach")
+     /* fetch("https://ai-work-assistant.onrender.com/ai-coach")
       .then(res => res.json())
       .then(data => setCoach(data));*/
 
-      fetch("http://127.0.0.1:8000/current-app")
+      fetch("https://ai-work-assistant.onrender.com/current-app")
       .then(res => res.json())
       .then(data => setCurrentApp(data));
 
-      fetch("http://127.0.0.1:8000/live-status")
+      fetch("https://ai-work-assistant.onrender.com/live-status")
       .then(res => res.json())
       .then(data => setLiveStatus(data));
       
-      fetch("http://127.0.0.1:8000/hourly-activity")
+      fetch("https://ai-work-assistant.onrender.com/hourly-activity")
       .then(res => res.json())
       .then(data => {
 
