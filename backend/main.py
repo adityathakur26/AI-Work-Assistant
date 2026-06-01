@@ -14,6 +14,7 @@ from ai_engine import (
 )
 from openai_service import generate_ai_coach
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 class Question(BaseModel):
     question: str
@@ -22,6 +23,14 @@ class Question(BaseModel):
 app = FastAPI()
 
 from fastapi.staticfiles import StaticFiles
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.mount(
     "/assets",
