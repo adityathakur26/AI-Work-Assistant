@@ -31,6 +31,9 @@ function App() {
   const [loadingCoach, setLoadingCoach] = useState(false);
   const [currentPage, setCurrentPage] = useState("dashboard");
 
+  const API_URL =
+  "https://your-backend.onrender.com";
+
   const generateAIReport = async () => {
 
     setLoadingCoach(true);
@@ -38,7 +41,7 @@ function App() {
     try {
 
       const response = await fetch(
-        "https://ai-work-assistant.onrender.com/ai-coach"
+        "${API_URL}/ai-coach"
       );
 
       const data = await response.json();
@@ -64,7 +67,7 @@ function App() {
     try {
 
       const response = await fetch(
-        "https://ai-work-assistant.onrender.com/ask-ai",
+        "${API_URL}/ask-ai",
         {
           method: "POST",
           headers: {
@@ -110,19 +113,19 @@ function App() {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch("https://ai-work-assistant.onrender.com/activities")
+      fetch("${API_URL}/activities")
         .then((res) => res.json())
         .then((data) => setActivities(data));
 
-      fetch("https://ai-work-assistant.onrender.com/suggestions")
+      fetch("${API_URL}/suggestions")
         .then((res) => res.json())
         .then((data) => setSuggestions(data));
 
-      fetch("https://ai-work-assistant.onrender.com/productivity-score")
+      fetch("${API_URL}/productivity-score")
         .then((res) => res.json())
         .then((data) => setScore(data));
 
-      fetch("https://ai-work-assistant.onrender.com/ai-insights")
+      fetch("${API_URL}/ai-insights")
       .then(res => res.json())
       .then(data => {
 
@@ -138,27 +141,27 @@ function App() {
 
       });
 
-      fetch("https://ai-work-assistant.onrender.com/daily-summary")
+      fetch("${API_URL}/daily-summary")
         .then(res => res.json())
         .then(data => setDailySummary(data.summary));
 
-      fetch("https://ai-work-assistant.onrender.com/categorized-activities")
+      fetch("${API_URL}/categorized-activities")
       .then(res=>res.json())
       .then(data=>setCategorized(data))    
 
-     /* fetch("https://ai-work-assistant.onrender.com/ai-coach")
+     /* fetch("${API_URL}/ai-coach")
       .then(res => res.json())
       .then(data => setCoach(data));*/
 
-      fetch("https://ai-work-assistant.onrender.com/current-app")
+      fetch("${API_URL}/current-app")
       .then(res => res.json())
       .then(data => setCurrentApp(data));
 
-      fetch("https://ai-work-assistant.onrender.com/live-status")
+      fetch("${API_URL}/live-status")
       .then(res => res.json())
       .then(data => setLiveStatus(data));
       
-      fetch("https://ai-work-assistant.onrender.com/hourly-activity")
+      fetch("${API_URL}/hourly-activity")
       .then(res => res.json())
       .then(data => {
 
