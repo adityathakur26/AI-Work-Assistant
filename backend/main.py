@@ -22,7 +22,6 @@ class Question(BaseModel):
 
 app = FastAPI()
 
-from fastapi.staticfiles import StaticFiles
 
 app.add_middleware(
     CORSMiddleware,
@@ -32,11 +31,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount(
-    "/assets",
-    StaticFiles(directory="../frontend/dist/assets"),
-    name="assets"
-)
 
 app.add_middleware(
     CORSMiddleware,
@@ -342,8 +336,8 @@ def current_app():
     }
     
 @app.get("/")
-def dashboard():
-    return FileResponse("../frontend/dist/index.html")
+def root():
+    return {"status": "Backend Running"}
 
     
 @app.get("/hourly-activity")
