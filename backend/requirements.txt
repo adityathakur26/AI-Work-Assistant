@@ -1,10 +1,6 @@
 fastapi
 uvicorn
-pygetwindow
-pystray
-pywebview
+pydantic
+python-multipart
 pillow
 plyer
-pythonnet
-pywin32
-pyinstaller
