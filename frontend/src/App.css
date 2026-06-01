@@ -1,0 +1,388 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+}
+
+body {
+  background: #070b17;
+  color: white;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #070b17, #10172d);
+}
+
+.sidebar {
+  width: 260px;
+  background: rgba(255, 255, 255, 0.04);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  backdrop-filter: blur(20px);
+}
+
+.logo {
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.sub-logo {
+  color: #8b93a7;
+  margin-top: 5px;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.nav-links button {
+  background: transparent;
+  border: none;
+  color: #d0d7ea;
+  text-align: left;
+  padding: 14px 16px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+.nav-links button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.active-nav {
+  background: linear-gradient(to right, #6c63ff, #8f6bff) !important;
+}
+
+.sidebar-footer {
+  color: #8b93a7;
+  font-size: 14px;
+  margin-top: auto;
+}
+
+.main-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.top-bar h1 {
+  font-size: 36px;
+}
+
+.top-bar p {
+  color: #8b93a7;
+  margin-top: 6px;
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 255, 157, 0.12);
+  color: #00ffa3;
+  padding: 12px 18px;
+  border-radius: 999px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00ffa3;
+}
+
+.score-section {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.score-card,
+.timeline-card,
+.chart-card,
+.summary-card,
+.activities-card,
+.suggestions-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 24px;
+  backdrop-filter: blur(20px);
+}
+
+.activities-card {
+  width: 100%;
+  min-height: 400px;
+}
+
+.bottom-grid {
+  grid-column: 1 / -1;
+}
+
+.score-circle {
+  width: 180px;
+  height: 180px;
+  margin: 30px auto;
+  border-radius: 50%;
+  background: linear-gradient(to bottom right, #6c63ff, #8f6bff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(108, 99, 255, 0.5);
+}
+
+.score-circle h1 {
+  font-size: 54px;
+}
+
+.score-circle span {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.alerts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alerts p {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 12px;
+  border-radius: 12px;
+  color: #dbe1f0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  border-radius: 24px;
+  padding: 28px;
+  color: white;
+}
+
+.stat-card h2 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.coding-card {
+  background: linear-gradient(to right, #6c63ff, #8f6bff);
+}
+
+.browsing-card {
+  background: linear-gradient(to right, #00c9a7, #00e4bd);
+}
+
+.email-card {
+  background: linear-gradient(to right, #ff9f43, #ffb84c);
+}
+
+.middle-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.card-header {
+  margin-bottom: 20px;
+}
+
+.card-header h3 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.card-header p {
+  color: #8b93a7;
+}
+
+.summary-list,
+.suggestions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.summary-item,
+.suggestion-item {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 14px;
+  border-radius: 14px;
+  color: #dbe1f0;
+}
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 18px;
+  border-radius: 18px;
+}
+
+.activity-item h4 {
+  margin-bottom: 6px;
+}
+
+.activity-item p {
+  color: #8b93a7;
+  font-size: 14px;
+}
+
+.activity-status {
+  background: rgba(0, 255, 163, 0.12);
+  color: #00ffa3;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+@media (max-width: 1200px) {
+  .score-section,
+  .middle-grid,
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+
+.coach-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 28px;
+  padding: 24px;
+  backdrop-filter: blur(20px);
+}
+
+.focus-card {
+  min-height: 320px;
+}
+
+.current-card,
+.focus-card,
+.coach-card {
+
+  background: rgba(255,255,255,.05);
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  border-radius: 24px;
+
+  padding: 24px;
+
+  backdrop-filter: blur(20px);
+
+  transition: .3s;
+}
+
+.current-card:hover,
+.focus-card:hover,
+.coach-card:hover {
+
+  transform: translateY(-5px);
+}
+
+.summary-banner {
+  margin-bottom: 24px;
+}
+
+.summary-banner-card {
+  background: linear-gradient(
+    135deg,
+    rgba(108,99,255,.15),
+    rgba(0,255,163,.08)
+  );
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  border-radius: 24px;
+
+  padding: 24px;
+}
+
+.summary-banner-card h2 {
+  margin-bottom: 12px;
+}
+
+.summary-banner-card p {
+  color: #dbe1f0;
+  line-height: 1.8;
+}
+.ai-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.ai-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.page-card {
+  background: #1f2937;
+  padding: 24px;
+  border-radius: 20px;
+}
+
+.page-card h1 {
+  margin-bottom: 20px;
+}
+
+.page-card .stats-grid {
+  margin-bottom: 20px;
+}

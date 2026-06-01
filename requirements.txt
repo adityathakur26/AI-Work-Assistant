@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pygetwindow
+pystray
+pywebview
+pillow
+plyer
+pythonnet
+pywin32
+pyinstaller
