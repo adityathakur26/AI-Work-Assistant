@@ -32,7 +32,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState("dashboard");
 
   const API_URL =
-  "https://ai-work-assistant-c063.onrender.com";
+  `https://ai-work-assistant-c063.onrender.com`;
 
   const generateAIReport = async () => {
 
@@ -41,7 +41,7 @@ function App() {
     try {
 
       const response = await fetch(
-        '${API_URL}/ai-coach'
+        `${API_URL}/ai-coach`
       );
 
       const data = await response.json();
@@ -67,7 +67,7 @@ function App() {
     try {
 
       const response = await fetch(
-        '${API_URL}/ask-ai',
+        `${API_URL}/ask-ai`,
         {
           method: "POST",
           headers: {
@@ -113,19 +113,19 @@ function App() {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch('${API_URL}/activities')
+      fetch(`${API_URL}/activities`)
         .then((res) => res.json())
         .then((data) => setActivities(data));
 
-      fetch('${API_URL}/suggestions')
+      fetch(`${API_URL}/suggestions`)
         .then((res) => res.json())
         .then((data) => setSuggestions(data));
 
-      fetch('${API_URL}/productivity-score')
+      fetch(`${API_URL}/productivity-score`)
         .then((res) => res.json())
         .then((data) => setScore(data));
 
-      fetch('${API_URL}/ai-insights')
+      fetch(`${API_URL}/ai-insights`)
       .then(res => res.json())
       .then(data => {
 
@@ -141,27 +141,27 @@ function App() {
 
       });
 
-      fetch('${API_URL}/daily-summary')
+      fetch(`${API_URL}/daily-summary`)
         .then(res => res.json())
         .then(data => setDailySummary(data.summary));
 
-      fetch('${API_URL}/categorized-activities')
+      fetch(`${API_URL}/categorized-activities`)
       .then(res=>res.json())
       .then(data=>setCategorized(data))    
 
-     /* fetch("${API_URL}/ai-coach")
+     /* fetch(`${API_URL}/ai-coach`)
       .then(res => res.json())
       .then(data => setCoach(data));*/
 
-      fetch('${API_URL}/current-app')
+      fetch(`${API_URL}/current-app`)
       .then(res => res.json())
       .then(data => setCurrentApp(data));
 
-      fetch('${API_URL}/live-status')
+      fetch(`${API_URL}/live-status`)
       .then(res => res.json())
       .then(data => setLiveStatus(data));
       
-      fetch('${API_URL}/hourly-activity')
+      fetch(`${API_URL}/hourly-activity`)
       .then(res => res.json())
       .then(data => {
 
