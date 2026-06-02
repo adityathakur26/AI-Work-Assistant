@@ -99,6 +99,13 @@ def get_activities():
         for row in rows
     ]
 
+@app.get("/download-report")
+def download_report():
+    return FileResponse(
+        "reports/weekly_report.pdf",
+        media_type="application/pdf",
+        filename="Productivity_Report.pdf"
+    )
 
 @app.get("/suggestions")
 def get_suggestions():
@@ -433,4 +440,29 @@ Be concise and actionable.
     return {
         "response": response
     }
-    
+
+from pydantic import BaseModel
+import sqlite3
+
+class Activity(BaseModel):
+    app_name: str
+    timestamp: str
+
+@app.post("/log-activity")
+def log_activity(activity: Activity):
+
+    conn = sqlite3.connect("activity.db")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        INSERT INTO activity (app_name, timestamp)
+        VALUES (?, ?)
+    """, (
+        activity.app_name,
+        activity.timestamp
+    ))
+
+    conn.commit()
+    conn.close()
+
+    return {"status": "saved"}

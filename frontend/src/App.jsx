@@ -14,6 +14,7 @@ import "./App.css";
 
 function App() {
   const [activities, setActivities] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [suggestions, setSuggestions] = useState([]);
   const [insights, setInsights] = useState({});
   const [dailySummary, setDailySummary] = useState("");
@@ -115,7 +116,10 @@ function App() {
     const fetchData = () => {
       fetch(`${API_URL}/activities`)
         .then((res) => res.json())
-        .then((data) => setActivities(data));
+        .then((data) => {
+          setActivities(data);
+          setLoading(false);
+        });
 
       fetch(`${API_URL}/suggestions`)
         .then((res) => res.json())
@@ -160,6 +164,7 @@ function App() {
       fetch(`${API_URL}/live-status`)
       .then(res => res.json())
       .then(data => setLiveStatus(data));
+      
       
       fetch(`${API_URL}/hourly-activity`)
       .then(res => res.json())
@@ -337,10 +342,47 @@ function App() {
       </div>
 
     </div>
+    <div className="settings-card">
+      <h3>Project Links</h3>
+
+      <a
+        href="https://github.com/adityathakur26/AI-Work-Assistant"
+        target="_blank"
+      >
+        GitHub Repository
+      </a>
+
+      <br />
+
+      <a
+        href="https://ai-work-assistant-c063.onrender.com"
+        target="_blank"
+      >
+        Backend API
+      </a>
+    </div>
 
   </div>
 
   )}
+
+  if (loading || activities.length === 0) {
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "white",
+          fontSize: "24px"
+        }}
+      >
+        Loading AI Work Assistant...
+      </div>
+    );
+  }
+
   return (
     <div className="app-container">
       <aside className="sidebar">
@@ -675,6 +717,7 @@ function App() {
         </div>
 
         )}
+        
         {currentPage === "reports" && (
 
         <div className="page-card">
@@ -686,10 +729,36 @@ function App() {
             <span>{score?.score || 0}/100</span>
           </div>
 
-          <div className="activity-item">
-            <h4>Status</h4>
-            <span>Ready for Export</span>
-          </div>
+          <button
+            className="ai-button"
+            onClick={generateAIReport}
+          >
+            Generate AI Report
+          </button>
+
+          {loadingCoach && (
+            <p>Generating report...</p>
+          )}
+
+          {coach && (
+            <div className="coach-card">
+
+              <h3>Executive Summary</h3>
+              <p>{coach.summary}</p>
+
+              <h3>Assessment</h3>
+              <p>{coach.assessment}</p>
+
+              <h3>Recommendations</h3>
+
+              <ul>
+                {coach.recommendations?.map((item,index)=>(
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+
+            </div>
+          )}
 
         </div>
 
