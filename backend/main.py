@@ -455,6 +455,14 @@ def log_activity(activity: Activity):
     cursor = conn.cursor()
 
     cursor.execute("""
+    CREATE TABLE IF NOT EXISTS activity (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        app_name TEXT,
+        timestamp TEXT
+    )
+    """)
+
+    cursor.execute("""
         INSERT INTO activity (app_name, timestamp)
         VALUES (?, ?)
     """, (
