@@ -1,5 +1,5 @@
 import pygetwindow as gw
-import time
+import time, os, requests
 import sqlite3
 from datetime import datetime
 from notifier import notify
@@ -13,6 +13,9 @@ notify(
 # Database
 conn = sqlite3.connect("activity.db")
 cursor = conn.cursor()
+
+print("DB Location:")
+print(os.path.abspath("activity.db"))
 
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS activity (
@@ -39,7 +42,15 @@ while True:
                 "127.0.0.1",
                 "AI Work Assistant",
                 "app_tracker.py",
-                "tray_app.py"
+                "tray_app.py",
+
+                # Windows system windows
+                "System tray overflow window",
+                "Program Manager",
+                "Task Switching",
+                "Windows Input Experience",
+                "Task View",
+                "Search"
             ]
 
             if any(
@@ -56,6 +67,11 @@ while True:
             )
 
             print("Current App:", window.title)
+            title = window.title.strip()
+
+            if len(title) < 3:
+                continue
+                        
 
             cursor.execute(
                 """
@@ -70,6 +86,22 @@ while True:
             )
 
             conn.commit()
+            try:
+                requests.post(
+                    "https://ai-work-assistant-c063.onrender.com/log-activity",
+                    json={
+                        "app_name": window.title,
+                        "timestamp": current_time
+                    },
+                    timeout=5
+                )
+                print(
+                    "Sent to cloud:",
+                    response.status_code,
+                    window.title
+                )
+            except Exception as e:
+                print("Cloud Sync failed:", e)
 
             title = window.title.lower()
 
