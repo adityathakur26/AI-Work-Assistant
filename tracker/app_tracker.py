@@ -1,5 +1,6 @@
 import pygetwindow as gw
-import time, os, requests
+import time, os
+import requests
 import sqlite3
 from datetime import datetime
 from notifier import notify
@@ -34,6 +35,7 @@ while True:
     try:
 
         window = gw.getActiveWindow()
+        print("Detected:", window.title if window else "No Window")
 
         if window and window.title != last_window:
 
@@ -87,7 +89,7 @@ while True:
 
             conn.commit()
             try:
-                requests.post(
+                response = requests.post(
                     "https://ai-work-assistant-c063.onrender.com/log-activity",
                     json={
                         "app_name": window.title,
@@ -95,11 +97,8 @@ while True:
                     },
                     timeout=5
                 )
-                print(
-                    "Sent to cloud:",
-                    response.status_code,
-                    window.title
-                )
+                print("Cloud Sync:", response.status_code)
+                
             except Exception as e:
                 print("Cloud Sync failed:", e)
 
